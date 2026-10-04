@@ -1,0 +1,759 @@
+{
+  "meta": {
+    "label": "06_answers_agent",
+    "mode": "agent",
+    "k": 8,
+    "min_sim": 0.2,
+    "chunks": 55,
+    "eval_set": "evals/eval_set.json",
+    "run_at": "2026-10-04T00:38:42",
+    "auto_pass": 29,
+    "total": 35,
+    "avg_seconds": 3.0,
+    "avg_searches": 1.66,
+    "guard_fired": 0,
+    "zero_search_questions": [],
+    "manual_pass": 33
+  },
+  "results": [
+    {
+      "id": "defect-train-size",
+      "type": "fact",
+      "question": "How many casting images was the defect classifier trained on?",
+      "reference_answer": "6,633 labeled images (3,758 defective, 2,875 acceptable)",
+      "answer": "The defect classifier was trained on **6,633 labeled casting images** [Defect_Classifier.md #2]. These consisted of 3,758 defective images and 2,875 acceptable images, with an additional held-out test set of 715 images used for evaluation.",
+      "gated": false,
+      "seconds": 3.0,
+      "auto_pass": true,
+      "manual_pass": true,
+      "note": "",
+      "searches": [
+        {
+          "query": "How many casting images was the defect classifier trained on?",
+          "source": "Defect_Classifier.md"
+        }
+      ],
+      "guard_fired": false
+    },
+    {
+      "id": "defect-accuracy",
+      "type": "fact",
+      "question": "What test accuracy did the defect classifier reach?",
+      "reference_answer": "99.72%",
+      "answer": "The defect classifier reached a **test accuracy of 99.72%** [Defect_Classifier.md #2]. This was achieved by epoch 4 when training on 6,633 labeled casting images (3,758 defective and 2,875 acceptable) and evaluated on a held-out test set of 715 images. The model achieved perfect precision and recall (1.00) on both defect and acceptable classes in the final test metrics [Defect_Classifier.md #3].",
+      "gated": false,
+      "seconds": 2.6,
+      "auto_pass": true,
+      "manual_pass": true,
+      "note": "correct; minor error in extra detail: says precision was 1.00 for both classes (ok_front is 0.99)",
+      "searches": [
+        {
+          "query": "defect classifier test accuracy",
+          "source": "Defect_Classifier.md"
+        }
+      ],
+      "guard_fired": false
+    },
+    {
+      "id": "defect-test-size",
+      "type": "fact",
+      "question": "How big was the held-out test set for the defect classifier?",
+      "reference_answer": "715 images",
+      "answer": "The held-out test set for the defect classifier was **715 images** [Defect_Classifier.md #2]. This test set consisted of 453 defective images and 262 acceptable images.",
+      "gated": false,
+      "seconds": 1.8,
+      "auto_pass": true,
+      "manual_pass": true,
+      "note": "",
+      "searches": [
+        {
+          "query": "held-out test set size for defect classifier",
+          "source": "Defect_Classifier.md"
+        }
+      ],
+      "guard_fired": false
+    },
+    {
+      "id": "defect-dataset",
+      "type": "fact",
+      "question": "Which dataset was the casting defect model trained on?",
+      "reference_answer": "Real-life Industrial Dataset of Casting Product (Kaggle)",
+      "answer": "The casting defect model was trained on the [Real-life Industrial Dataset of Casting Product](https://www.kaggle.com/datasets/ravirajsinh45/real-life-industrial-dataset-of-casting-product) from Kaggle [Defect_Classifier.md #4]. This dataset contains submersible pump impeller images labeled as defective or acceptable, pre-split into train/test sets. The model was trained on 6,633 labeled casting images (3,758 defective and 2,875 acceptable) and evaluated on a held-out test set of 715 images [Defect_Classifier.md #2].",
+      "gated": false,
+      "seconds": 2.6,
+      "auto_pass": true,
+      "manual_pass": true,
+      "note": "",
+      "searches": [
+        {
+          "query": "What dataset was the casting defect model trained on?",
+          "source": "Defect_Classifier.md"
+        }
+      ],
+      "guard_fired": false
+    },
+    {
+      "id": "defect-schedule",
+      "type": "fact",
+      "question": "What optimizer and learning rate schedule were used to fine-tune the classifier?",
+      "reference_answer": "SGD with a step-decay learning rate schedule",
+      "answer": "Based on the documentation, the classifier was fine-tuned using:\n\n- **Optimizer:** SGD (Stochastic Gradient Descent) [Defect_Classifier.md #5]\n- **Learning rate schedule:** Step-decay learning rate schedule [Defect_Classifier.md #5]\n\nThe documentation indicates that these hyperparameters were used to fine-tune all layers of the ResNet18 network on the casting dataset [Defect_Classifier.md #5].",
+      "gated": false,
+      "seconds": 2.4,
+      "auto_pass": true,
+      "manual_pass": true,
+      "note": "",
+      "searches": [
+        {
+          "query": "optimizer learning rate schedule fine-tune classifier",
+          "source": "Defect_Classifier.md"
+        }
+      ],
+      "guard_fired": false
+    },
+    {
+      "id": "defect-run-app",
+      "type": "fact",
+      "question": "What command runs the defect classifier web app?",
+      "reference_answer": "python app.py",
+      "answer": "The command to run the defect classifier web app is:\n\n```bash\npython app.py\n```\n\nAfter running this command, you can visit `http://127.0.0.1:5000`, upload a casting part image, and get an instant defect prediction. [Defect_Classifier.md #11]",
+      "gated": false,
+      "seconds": 2.0,
+      "auto_pass": true,
+      "manual_pass": true,
+      "note": "",
+      "searches": [
+        {
+          "query": "How do I run the defect classifier web app?",
+          "source": "Defect_Classifier.md"
+        }
+      ],
+      "guard_fired": false
+    },
+    {
+      "id": "defect-future",
+      "type": "fact",
+      "question": "What future improvements are planned for the defect classifier?",
+      "reference_answer": "Multi-class classification, confidence scores, other manufacturing datasets",
+      "answer": "The planned future improvements for the Defect Classifier are [Defect_Classifier.md #12]:\n\n1. **Multi-class classification** — Extend from binary classification (defective/ok) to handle multiple different defect types instead of just flagging defective vs. acceptable parts\n\n2. **Prediction confidence scores** — Add confidence scores alongside the classification results to provide more information about prediction certainty\n\n3. **General-purpose defect detection** — Expand the tool to work across other manufacturing datasets beyond casting images",
+      "gated": false,
+      "seconds": 3.0,
+      "auto_pass": true,
+      "manual_pass": true,
+      "note": "",
+      "searches": [
+        {
+          "query": "What future improvements are planned for the defect classifier?",
+          "source": "Defect_Classifier.md"
+        }
+      ],
+      "guard_fired": false
+    },
+    {
+      "id": "discord-run",
+      "type": "fact",
+      "question": "What command starts the Discord bot?",
+      "reference_answer": "python -m bot.main",
+      "answer": "The command to start the Discord bot is:\n\n```bash\npython -m bot.main\n```\n\n[Discord_Bot.md #11]\n\nOn first run, this will create the SQLite database (`bingo.db`), create all tables, and seed the 4 teams and 25 tiles.",
+      "gated": false,
+      "seconds": 4.8,
+      "auto_pass": true,
+      "manual_pass": true,
+      "note": "",
+      "searches": [
+        {
+          "query": "How do I start the Discord bot?",
+          "source": "Discord_Bot.md"
+        },
+        {
+          "query": "What command to run to start the bot server?",
+          "source": "Discord_Bot.md"
+        },
+        {
+          "query": "Run python main.py to start bot",
+          "source": "Discord_Bot.md"
+        }
+      ],
+      "guard_fired": false
+    },
+    {
+      "id": "discord-storage",
+      "type": "fact",
+      "question": "What database does the bingo bot use?",
+      "reference_answer": "SQLite",
+      "answer": "The bingo bot uses **SQLite**, specifically a database file called `bingo.db` [Discord_Bot.md #11]. This database is created automatically on first run, and stores all the tables, teams, and tiles for the bingo event [Discord_Bot.md #11].",
+      "gated": false,
+      "seconds": 2.0,
+      "auto_pass": false,
+      "manual_pass": true,
+      "note": "auto-check false negative: answer judged correct",
+      "searches": [
+        {
+          "query": "bingo bot database"
+        }
+      ],
+      "guard_fired": false
+    },
+    {
+      "id": "discord-pillow",
+      "type": "fact",
+      "question": "Which library renders the marked-up board images in the bingo bot?",
+      "reference_answer": "Pillow",
+      "answer": "The Discord bot uses **Pillow** to render the marked-up board images. [Discord_Bot.md #3]",
+      "gated": false,
+      "seconds": 1.7,
+      "auto_pass": true,
+      "manual_pass": true,
+      "note": "",
+      "searches": [
+        {
+          "query": "What library renders marked-up board images in the bingo bot?"
+        }
+      ],
+      "guard_fired": false
+    },
+    {
+      "id": "discord-env",
+      "type": "fact",
+      "question": "Which environment variable holds the leaderboard channel in the bingo bot's .env?",
+      "reference_answer": "LEADERBOARD_CHANNEL_ID",
+      "answer": "Based on the documentation, the environment variable that holds the leaderboard channel is **`LEADERBOARD_CHANNEL_ID`** [Discord_Bot.md #8].",
+      "gated": false,
+      "seconds": 2.0,
+      "auto_pass": true,
+      "manual_pass": true,
+      "note": "",
+      "searches": [
+        {
+          "query": "bingo bot leaderboard channel environment variable .env"
+        }
+      ],
+      "guard_fired": false
+    },
+    {
+      "id": "discord-roles",
+      "type": "fact",
+      "question": "Where are the team role IDs stored for the bingo bot?",
+      "reference_answer": "In the database, not .env",
+      "answer": "The team role IDs for the bingo bot are stored in the **database** (`bingo.db`), not in `.env` [Discord_Bot.md #9]. \n\nAfter creating your 4 team roles in Discord, you can set the team role IDs in two ways [Discord_Bot.md #9]:\n\n1. Edit the placeholder values in `bot/db/seed.py` before the first run, or\n2. Run an SQL `UPDATE` statement directly against `bingo.db` afterward:\n   ```\n   UPDATE teams SET role_id = ? WHERE name = ?\n   ```",
+      "gated": false,
+      "seconds": 2.2,
+      "auto_pass": false,
+      "manual_pass": true,
+      "note": "auto-check false negative: answer judged correct",
+      "searches": [
+        {
+          "query": "bingo bot team role IDs stored"
+        }
+      ],
+      "guard_fired": false
+    },
+    {
+      "id": "discord-points",
+      "type": "fact",
+      "question": "How do I make some bingo tiles worth more points than others?",
+      "reference_answer": "Update the point_value column in the tiles table before the event",
+      "answer": "To make some bingo tiles worth more points than others, you need to **update the `point_value` column on individual rows in the `tiles` table before the event starts** [Discord_Bot.md #14].\n\nBy default, all seeded tiles share the same point value. To run a weighted bingo, you'll need to directly modify the `bingo.db` SQLite database and change the `point_value` for specific tiles to your desired amounts before you start the bot event.",
+      "gated": false,
+      "seconds": 2.7,
+      "auto_pass": true,
+      "manual_pass": true,
+      "note": "",
+      "searches": [
+        {
+          "query": "How do I make bingo tiles worth more points than others?"
+        },
+        {
+          "query": "bingo points scoring system"
+        }
+      ],
+      "guard_fired": false
+    },
+    {
+      "id": "pi-interval",
+      "type": "fact",
+      "question": "How often does the Pi monitor collect metrics?",
+      "reference_answer": "Every 10 seconds",
+      "answer": "The Pi Monitor collects metrics **every 10 seconds** [Pi_Monitor.md #3]. A background thread inside `app.py` calls `metrics.py` every 10 seconds, saves the reading to SQLite, and checks it against alert thresholds—all independent of whether the dashboard is open in a browser.",
+      "gated": false,
+      "seconds": 3.8,
+      "auto_pass": true,
+      "manual_pass": true,
+      "note": "",
+      "searches": [
+        {
+          "query": "How often does Pi monitor collect metrics frequency interval",
+          "source": "Pi_Monitor.md"
+        },
+        {
+          "query": "Pi Monitor collection interval seconds sample rate polling",
+          "source": "Pi_Monitor.md"
+        }
+      ],
+      "guard_fired": false
+    },
+    {
+      "id": "pi-cpu-threshold",
+      "type": "fact",
+      "question": "What CPU usage threshold triggers an alert on the Pi monitor?",
+      "reference_answer": "85 percent",
+      "answer": "The CPU usage threshold that triggers an alert on the Pi Monitor is **85%** [Pi_Monitor.md #8]. This threshold is configurable in the `alerts.py` file under the `THRESHOLDS` dictionary.",
+      "gated": false,
+      "seconds": 2.0,
+      "auto_pass": false,
+      "manual_pass": true,
+      "note": "auto-check false negative: answer judged correct",
+      "searches": [
+        {
+          "query": "What CPU usage threshold triggers an alert on the Pi monitor?",
+          "source": "Pi_Monitor.md"
+        }
+      ],
+      "guard_fired": false
+    },
+    {
+      "id": "pi-hardware",
+      "type": "fact",
+      "question": "What hardware does the system monitor run on?",
+      "reference_answer": "Raspberry Pi 4 Model B",
+      "answer": "The system monitor runs on a **Raspberry Pi 4 Model B** with **Raspberry Pi OS (Debian-based Linux)** [Pi_Monitor.md #4].",
+      "gated": false,
+      "seconds": 2.0,
+      "auto_pass": true,
+      "manual_pass": true,
+      "note": "",
+      "searches": [
+        {
+          "query": "What hardware does the system monitor run on?",
+          "source": "Pi_Monitor.md"
+        }
+      ],
+      "guard_fired": false
+    },
+    {
+      "id": "pi-history-endpoint",
+      "type": "fact",
+      "question": "Which API endpoint returns historical readings?",
+      "reference_answer": "GET /api/history",
+      "answer": "The API endpoint that returns historical readings is **`GET /api/history`**, which returns recent historical readings from SQLite in JSON format [Pi_Monitor.md #5].",
+      "gated": false,
+      "seconds": 2.0,
+      "auto_pass": true,
+      "manual_pass": true,
+      "note": "",
+      "searches": [
+        {
+          "query": "API endpoint historical readings"
+        }
+      ],
+      "guard_fired": false
+    },
+    {
+      "id": "pi-alert-log",
+      "type": "fact",
+      "question": "Where are triggered alerts logged?",
+      "reference_answer": "alerts.log",
+      "answer": "Based on the documentation, triggered alerts are logged to **`alerts.log`** in the Pi System Monitor project [Pi_Monitor.md #8]. The alerts are also returned by the `/api/check` endpoint, so you can view them through the REST API as well.",
+      "gated": false,
+      "seconds": 1.8,
+      "auto_pass": true,
+      "manual_pass": true,
+      "note": "",
+      "searches": [
+        {
+          "query": "Where are triggered alerts logged?"
+        }
+      ],
+      "guard_fired": false
+    },
+    {
+      "id": "treasure-build",
+      "type": "fact",
+      "question": "What command builds the Treasure Runner C library?",
+      "reference_answer": "source env.sh, then make dist",
+      "answer": "The command to build the Treasure Runner C library is:\n\n```bash\nmake dist\n```\n\nThis command sources environment variables, detects your platform, symlinks the correct `libpuzzlegen.so` for your architecture (amd64 or arm64), and compiles the C source into `dist/libbackend.so` [Treasure_Runner.md #5].",
+      "gated": false,
+      "seconds": 2.5,
+      "auto_pass": true,
+      "manual_pass": false,
+      "note": "incomplete: omits `source env.sh` and says `make dist` itself sources the environment",
+      "searches": [
+        {
+          "query": "How do I build the Treasure Runner C library",
+          "source": "Treasure_Runner.md"
+        }
+      ],
+      "guard_fired": false
+    },
+    {
+      "id": "treasure-c-tests",
+      "type": "fact",
+      "question": "How do I run the C unit tests for Treasure Runner?",
+      "reference_answer": "source env.sh, then make -C c test",
+      "answer": "To run the C unit tests for Treasure Runner, use these commands [Treasure_Runner.md #6]:\n\n```bash\nsource env.sh\nmake -C c test\n```\n\nThe tests use the [Check](https://libcheck.github.io/check/) framework, and the test runner is built at `c/build/tests/test_runner`.",
+      "gated": false,
+      "seconds": 2.2,
+      "auto_pass": true,
+      "manual_pass": true,
+      "note": "",
+      "searches": [
+        {
+          "query": "How do I run the C unit tests for Treasure Runner?",
+          "source": "Treasure_Runner.md"
+        }
+      ],
+      "guard_fired": false
+    },
+    {
+      "id": "treasure-sweep",
+      "type": "fact",
+      "question": "What order does the integration runner sweep directions in?",
+      "reference_answer": "South, West, North, East",
+      "answer": "The integration runner sweeps directions in this order: **SOUTH → WEST → NORTH → EAST** [Treasure_Runner.md #8]",
+      "gated": false,
+      "seconds": 1.7,
+      "auto_pass": true,
+      "manual_pass": true,
+      "note": "",
+      "searches": [
+        {
+          "query": "integration runner sweep directions order"
+        }
+      ],
+      "guard_fired": false
+    },
+    {
+      "id": "treasure-destroy",
+      "type": "fact",
+      "question": "How do I free the C-side memory from Python in Treasure Runner?",
+      "reference_answer": "Call engine.destroy()",
+      "answer": "To free C-side memory from Python in Treasure Runner, you need to call the `engine.destroy()` method [Treasure_Runner.md #14]. \n\nThe C library owns all heap memory, and Python holds opaque `c_void_p` handles. The `destroy()` method is protected against double-free by automatically setting the internal pointer to `None` after the first call, so it's safe to call multiple times [Treasure_Runner.md #14].",
+      "gated": false,
+      "seconds": 3.0,
+      "auto_pass": true,
+      "manual_pass": true,
+      "note": "",
+      "searches": [
+        {
+          "query": "How do I free the C-side memory from Python in Treasure Runner?",
+          "source": "Treasure_Runner.md"
+        }
+      ],
+      "guard_fired": false
+    },
+    {
+      "id": "treasure-platform",
+      "type": "fact",
+      "question": "Which operating systems can run Treasure Runner without the dev container?",
+      "reference_answer": "Linux x86-64 and ARM64 only",
+      "answer": "Based on the documentation, only **Linux** (specifically Linux x86-64 and ARM64) can run Treasure Runner without the dev container [Treasure_Runner.md #4].\n\nmacOS and Windows are not supported without the dev container. The pre-built puzzle generator in `dist/` is only available as compiled libraries for Linux x86-64 (`libpuzzlegen-linux-amd64.so`) and Linux ARM64 (`libpuzzlegen-linux-arm64.so`) [Treasure_Runner.md #4].",
+      "gated": false,
+      "seconds": 2.9,
+      "auto_pass": false,
+      "manual_pass": true,
+      "note": "auto-check false negative: answer judged correct",
+      "searches": [
+        {
+          "query": "Treasure Runner operating systems OS requirements without dev container",
+          "source": "Treasure_Runner.md"
+        }
+      ],
+      "guard_fired": false
+    },
+    {
+      "id": "discord-launch-paraphrase",
+      "type": "paraphrase",
+      "question": "Once everything is installed, how do I get the bingo bot up and running?",
+      "reference_answer": "python -m bot.main",
+      "answer": "To get the bingo bot up and running after installation, follow these steps:\n\n1. **Run the bot** [Discord_Bot.md #11]\n   ```bash\n   python -m bot.main\n   ```\n   On first run, this creates `bingo.db`, creates all tables, and seeds the 4 teams and 25 tiles (with the center tile marked as free).\n\n2. **Set team role IDs** [Discord_Bot.md #9]\n   Team role IDs are stored in the database, not `.env`. After creating your 4 team roles in Discord, either:\n   - Edit the placeholder values in `bot/db/seed.py` before first run, or\n   - Run `UPDATE teams SET role_id = ? WHERE name = ?` directly against `bingo.db` afterward\n\n3. **Post the leaderboard** [Discord_Bot.md #12]\n   In Discord, run `/setup_leaderboard` (as an admin) in your leaderboard channel. This posts the 4 team boards, the team standings embed, and the player standings embed. It's safe to run again later — it updates the existing messages in place rather than posting duplicates.\n\nThat's it! The bot will then be ready for players to use `/register` and `/submit` commands.",
+      "gated": false,
+      "seconds": 4.5,
+      "auto_pass": true,
+      "manual_pass": true,
+      "note": "",
+      "searches": [
+        {
+          "query": "How do I get the bingo bot up and running after installation"
+        },
+        {
+          "query": "bingo bot start run setup"
+        }
+      ],
+      "guard_fired": false
+    },
+    {
+      "id": "pi-boot-paraphrase",
+      "type": "paraphrase",
+      "question": "How do I make the system monitor come back on its own after a reboot?",
+      "reference_answer": "Create a systemd service and enable it",
+      "answer": "To make the system monitor come back on its own after a reboot, you need to set it up as a `systemd` service with auto-start enabled. Here's how:\n\n1. **Create a service file** at `/etc/systemd/system/pi-monitor.service`:\n\n```ini\n[Unit]\nDescription=Pi System Monitor\nAfter=network.target\n\n[Service]\nUser=<your-username>\nWorkingDirectory=/home/<your-username>/pi-monitor\nExecStart=/home/<your-username>/pi-monitor/venv/bin/python3 app.py\nRestart=always\nRestartSec=5\n\n[Install]\nWantedBy=multi-user.target\n```\n\nMake sure to replace `<your-username>` with your actual username.\n\n2. **Enable and start the service**:\n\n```bash\nsudo systemctl daemon-reload\nsudo systemctl enable pi-monitor.service\nsudo systemctl start pi-monitor.service\n```\n\nThe key is `sudo systemctl enable` — this registers the service to start automatically on boot. The `Restart=always` setting also ensures it restarts automatically if it crashes [Pi_Monitor.md #6, #7].",
+      "gated": false,
+      "seconds": 3.6,
+      "auto_pass": true,
+      "manual_pass": true,
+      "note": "",
+      "searches": [
+        {
+          "query": "system monitor come back on after reboot",
+          "source": "Pi_Monitor.md"
+        }
+      ],
+      "guard_fired": false
+    },
+    {
+      "id": "discord-reject-paraphrase",
+      "type": "paraphrase",
+      "question": "What happens when an admin declines a submitted drop?",
+      "reference_answer": "The admin is prompted for a reason",
+      "answer": "When an admin declines a submitted drop, the bot prompts the admin for a reason [Discord_Bot.md #13]. However, no leaderboard changes are made—only approved submissions mark tiles as complete and update the leaderboards [Discord_Bot.md #13].",
+      "gated": false,
+      "seconds": 2.2,
+      "auto_pass": true,
+      "manual_pass": true,
+      "note": "",
+      "searches": [
+        {
+          "query": "What happens when an admin declines a submitted drop?"
+        }
+      ],
+      "guard_fired": false
+    },
+    {
+      "id": "defect-reeval-paraphrase",
+      "type": "paraphrase",
+      "question": "How can I check the model's performance again without training from scratch?",
+      "reference_answer": "python run_evaluation.py",
+      "answer": "Based on your Defect Classifier project, you can check the model's performance without training from scratch by running:\n\n```bash\npython run_evaluation.py\n```\n\nThis script **loads the saved weights** (`model_weights.pth`) and **re-runs evaluation without retraining** [Defect_Classifier.md #11]. The evaluation script will compute performance metrics like precision, recall, and confusion matrix on your test set [Defect_Classifier.md #8].\n\nYour trained model already achieved **99.72% test accuracy** [Defect_Classifier.md #2], so you can quickly verify this performance using the saved checkpoint rather than re-training from scratch.",
+      "gated": false,
+      "seconds": 3.3,
+      "auto_pass": true,
+      "manual_pass": true,
+      "note": "",
+      "searches": [
+        {
+          "query": "How to check model performance without training from scratch"
+        }
+      ],
+      "guard_fired": false
+    },
+    {
+      "id": "defect-recall-paraphrase",
+      "type": "paraphrase",
+      "question": "Why does the classifier care about one metric more than overall accuracy?",
+      "reference_answer": "Recall on defective parts matters most since missing a defect costs more than a false alarm",
+      "answer": "The classifier prioritizes **recall on the `def_front` class** over overall accuracy because **missing a real defect is more costly than a false alarm** [Defect_Classifier.md #3]. \n\nIn a manufacturing context, failing to detect an actual defective part (a false negative) has serious consequences—defective parts could reach customers. In contrast, incorrectly flagging an acceptable part as defective (a false positive) is merely a false alarm that can be caught in further inspection, making it a less critical error. That's why the model emphasizes recall for defects: it's better to be cautious and catch all real defects, even if it means some false alarms, rather than risk missing defects entirely.",
+      "gated": false,
+      "seconds": 3.3,
+      "auto_pass": true,
+      "manual_pass": true,
+      "note": "correct core answer; adds explanation not in the docs (customer harm, extra inspection)",
+      "searches": [
+        {
+          "query": "Why does the classifier care about one metric more than overall accuracy?",
+          "source": "Defect_Classifier.md"
+        }
+      ],
+      "guard_fired": false
+    },
+    {
+      "id": "multi-flask",
+      "type": "multi",
+      "question": "Which of my projects use Flask?",
+      "reference_answer": "Defect classifier and Pi system monitor",
+      "answer": "Two of your projects use Flask:\n\n1. **Manufacturing Defect Classifier** — Uses Flask as the backend to serve a web app for interactive inference. The Flask app (`app.py`) provides a browser-based upload interface for predicting whether manufactured parts are defective or acceptable. [Defect_Classifier.md #7]\n\n2. **Pi System Monitor** — Uses Flask to build a real-time system monitoring dashboard for the Raspberry Pi. The Flask API exposes hardware metrics and historical data over HTTP, which the browser dashboard polls to display live monitoring information. [Pi_Monitor.md #4]",
+      "gated": false,
+      "seconds": 3.9,
+      "auto_pass": true,
+      "manual_pass": true,
+      "note": "",
+      "searches": [
+        {
+          "query": "Flask",
+          "source": "Defect_Classifier.md"
+        },
+        {
+          "query": "Flask",
+          "source": "Discord_Bot.md"
+        },
+        {
+          "query": "Flask",
+          "source": "Pi_Monitor.md"
+        },
+        {
+          "query": "Flask",
+          "source": "Treasure_Runner.md"
+        }
+      ],
+      "guard_fired": false
+    },
+    {
+      "id": "multi-sqlite",
+      "type": "multi",
+      "question": "Which projects store data in SQLite?",
+      "reference_answer": "Discord bingo bot and Pi system monitor",
+      "answer": "Based on the search results, **two projects** store data in SQLite:\n\n1. **Discord_Bot** — Uses SQLite to store bingo game data (teams, tiles, submissions) in a `bingo.db` file [Discord_Bot.md #3]. The database is created automatically on first run and includes tables for teams, tiles, and player submissions [Discord_Bot.md #5].\n\n2. **Pi_Monitor** — Uses SQLite to persist historical system metrics readings via the `storage.py` module [Pi_Monitor.md #3]. The collected data (CPU, temperature, memory, disk, network) is saved to SQLite by a background thread running every 10 seconds, independent of whether the dashboard browser is open [Pi_Monitor.md #2].",
+      "gated": false,
+      "seconds": 4.5,
+      "auto_pass": true,
+      "manual_pass": true,
+      "note": "correct projects; minor misreading: says bingo.db 'stores all queries' (database.py holds the queries)",
+      "searches": [
+        {
+          "query": "SQLite database",
+          "source": "Defect_Classifier.md"
+        },
+        {
+          "query": "SQLite database",
+          "source": "Discord_Bot.md"
+        },
+        {
+          "query": "SQLite database",
+          "source": "Pi_Monitor.md"
+        },
+        {
+          "query": "SQLite database",
+          "source": "Treasure_Runner.md"
+        }
+      ],
+      "guard_fired": false
+    },
+    {
+      "id": "multi-systemd",
+      "type": "multi",
+      "question": "Which projects are meant to run continuously as a systemd service?",
+      "reference_answer": "Discord bingo bot and Pi system monitor",
+      "answer": "Based on the documentation, two projects are meant to run continuously as a systemd service:\n\n1. **Pi System Monitor** [Pi_Monitor.md #0] — \"running continuously as a background service.\" It has detailed systemd service configuration and \"Runs on boot — deployed as a `systemd` service with automatic restart on failure\" [Pi_Monitor.md #1]\n\n2. **OSRS Bingo Discord Bot** [Discord_Bot.md #16] — \"This bot is designed to run continuously (e.g. on a Raspberry Pi) via a process manager such as `systemd`, so it restarts automatically on crash or reboot.\"\n\nThe other two projects (Defect_Classifier and Treasure_Runner) do not have systemd service deployment mentioned in their documentation.",
+      "gated": false,
+      "seconds": 5.3,
+      "auto_pass": true,
+      "manual_pass": true,
+      "note": "",
+      "searches": [
+        {
+          "query": "systemd service continuous running"
+        },
+        {
+          "query": "systemd service",
+          "source": "Discord_Bot.md"
+        },
+        {
+          "query": "systemd service",
+          "source": "Pi_Monitor.md"
+        },
+        {
+          "query": "systemd service",
+          "source": "Treasure_Runner.md"
+        },
+        {
+          "query": "systemd service",
+          "source": "Defect_Classifier.md"
+        }
+      ],
+      "guard_fired": false
+    },
+    {
+      "id": "ide-unanswerable",
+      "type": "unanswerable",
+      "question": "What IDE was used to build these projects?",
+      "reference_answer": "Not in the documents",
+      "answer": "Based on the documentation, I found specific IDE information only for the **Treasure Runner** project:\n\n**Treasure Runner:** VS Code (Visual Studio Code) with the Dev Containers extension [Treasure_Runner.md #3]\n\nFor the other three projects—**Discord Bot**, **Defect Classifier**, and **Pi Monitor**—the documentation does not specify which IDE was used. These projects are Python-based applications built with standard tools (Flask, discord.py, psutil), but there's no mention of a particular IDE in their documentation.",
+      "gated": false,
+      "seconds": 7.7,
+      "auto_pass": false,
+      "manual_pass": false,
+      "note": "presented the VS Code dev-container recommendation as IDE information for the projects",
+      "searches": [
+        {
+          "query": "What IDE was used to build the projects?"
+        },
+        {
+          "query": "IDE development environment editor"
+        },
+        {
+          "query": "Discord bot development setup requirements",
+          "source": "Discord_Bot.md"
+        },
+        {
+          "query": "Defect Classifier setup development",
+          "source": "Defect_Classifier.md"
+        },
+        {
+          "query": "Pi Monitor setup development environment",
+          "source": "Pi_Monitor.md"
+        }
+      ],
+      "guard_fired": false
+    },
+    {
+      "id": "gpu-unanswerable",
+      "type": "unanswerable",
+      "question": "What GPU was used to train the defect classifier?",
+      "reference_answer": "Not in the documents",
+      "answer": "The documentation doesn't specify which GPU was used to train the defect classifier. It only mentions that PyTorch can be configured for GPU-accelerated training if you have an NVIDIA GPU [Defect_Classifier.md #10], but it doesn't indicate what hardware was actually used for the training that produced the model.",
+      "gated": false,
+      "seconds": 2.3,
+      "auto_pass": false,
+      "manual_pass": true,
+      "note": "auto-check false negative: answer judged correct",
+      "searches": [
+        {
+          "query": "What GPU was used to train the defect classifier?",
+          "source": "Defect_Classifier.md"
+        }
+      ],
+      "guard_fired": false
+    },
+    {
+      "id": "license-unanswerable",
+      "type": "unanswerable",
+      "question": "What license are these projects released under?",
+      "reference_answer": "Not in the documents",
+      "answer": "I couldn't find license information in the project documentation. The search results show details about the projects' features, setup, and tech stack, but don't include any mention of which license these projects are released under.\n\nIf you'd like to know about the licenses, I'd recommend checking if there's a LICENSE file in each project's repository.",
+      "gated": false,
+      "seconds": 3.7,
+      "auto_pass": true,
+      "manual_pass": true,
+      "note": "",
+      "searches": [
+        {
+          "query": "What license are these projects released under?",
+          "source": "Defect_Classifier.md"
+        },
+        {
+          "query": "What license are these projects released under?",
+          "source": "Discord_Bot.md"
+        },
+        {
+          "query": "What license are these projects released under?",
+          "source": "Pi_Monitor.md"
+        },
+        {
+          "query": "What license are these projects released under?",
+          "source": "Treasure_Runner.md"
+        }
+      ],
+      "guard_fired": false
+    },
+    {
+      "id": "players-unanswerable",
+      "type": "unanswerable",
+      "question": "How many players took part in the bingo event?",
+      "reference_answer": "Not in the documents",
+      "answer": "I couldn't find information about the actual number of players who participated in the bingo event in the documentation. The Discord_Bot.md file describes how the bingo bot works and how to set it up, but doesn't contain data about a specific event's participation. The documentation doesn't appear to include event results or statistics about how many players actually took part.",
+      "gated": false,
+      "seconds": 3.3,
+      "auto_pass": true,
+      "manual_pass": true,
+      "note": "",
+      "searches": [
+        {
+          "query": "bingo event players"
+        },
+        {
+          "query": "bingo event number of players participants"
+        }
+      ],
+      "guard_fired": false
+    }
+  ]
+}
