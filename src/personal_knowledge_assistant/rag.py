@@ -20,15 +20,40 @@ def chunk_text(text: str, size: int = 800, overlap: int = 100) -> list[str]:
         start += size - overlap
     return chunks
 
-def chunk_markdown(text: str, max_size: int = 800) -> list[str]:
-    chunks = []
-    for section in re.split(r"\n(?=#{1,3} )", text):
-        heading = section.split("\n", 1)[0].strip()
-        if len(section) <= max_size:
-            chunks.append(section)
+def split_sections(text: str) -> list[tuple[str, str]]:
+    """Return (heading, body) pairs, ignoring '#' lines inside code fences."""
+    sections, heading, lines, in_fence = [], "", [], False
+    for line in text.split("\n"):
+        if line.lstrip().startswith("```"):
+            in_fence = not in_fence
+        if not in_fence and re.match(r"#{1,3} ", line):
+            if lines:
+                sections.append((heading, "\n".join(lines).strip()))
+            heading, lines = line.lstrip("# ").strip(), [line]
         else:
-            for i, piece in enumerate(chunk_text(section, max_size, 100)):
-                chunks.append(piece if i == 0 else f"{heading}\n{piece}")
+            lines.append(line)
+    if lines:
+        sections.append((heading, "\n".join(lines).strip()))
+    return sections
+
+
+def chunk_markdown(text: str, doc_name: str, max_size: int = 800, min_size: int = 150) -> list[str]:
+    sections = split_sections(text)
+    title = sections[0][0] if sections and sections[0][0] else doc_name
+
+    merged = []
+    for heading, body in sections:
+        if merged and len(body) < min_size:
+            prev_h, prev_b = merged[-1]
+            merged[-1] = (prev_h, prev_b + "\n\n" + body)
+        else:
+            merged.append((heading, body))
+
+    chunks = []
+    for heading, body in merged:
+        label = title if heading == title else f"{title} / {heading}"
+        for piece in (chunk_text(body, max_size, 100) if len(body) > max_size else [body]):
+            chunks.append(piece)
     return chunks
 
 def ingest(folder: str = "docs") -> None:
@@ -36,7 +61,7 @@ def ingest(folder: str = "docs") -> None:
         if path.suffix not in {".md", ".txt"}:
             continue
         collection.delete(where={"source": path.name})
-        chunks = chunk_markdown(path.read_text(encoding="utf-8"))
+        chunks = chunk_markdown(path.read_text(encoding="utf-8"), path.stem)
         if not chunks:
             continue
         collection.upsert(
