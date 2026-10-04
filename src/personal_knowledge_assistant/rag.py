@@ -73,10 +73,11 @@ def ingest(folder: str = "docs") -> None:
     print(f"Collection now has {collection.count()} chunks")
 
 
-def retrieve(question: str, k: int = 4) -> list[dict]:
+def retrieve(question: str, k: int = 4, source: str | None = None) -> list[dict]:
     res = collection.query(
         query_embeddings=embedder.encode([question]).tolist(),
         n_results=k,
+        where={"source": source} if source else None,
     )
     return [
         {"text": t, "source": m["source"], "chunk": m["chunk"], "sim": 1 - d}
