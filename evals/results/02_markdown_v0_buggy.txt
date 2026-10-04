@@ -1,3 +1,11 @@
+run: 02 markdown v0 (buggy)
+chunker: chunk_markdown v0, splits on '#' lines, including '#' comments inside code fences; no merging, no prefix
+chunks: 65
+retrieval: all-MiniLM-L6-v2, cosine, ChromaDB
+eval set: eval_set.json, 35 questions (31 answerable, 4 unanswerable)
+top-4 hit rate: 71% (22/31), derived from the 9 MISS@4 lines
+notes: first run with rank diagnostics; every expected phrase exists in some chunk (no None ranks)
+
 chunks: 65
 MISS@4  [defect-schedule]  ranks of expected chunk: [5]
 MISS@4  [defect-run-app]  ranks of expected chunk: [9]

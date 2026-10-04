@@ -1,4 +1,10 @@
-char chunker, size=800, overlap=100, 31 chunks
+run: 01 char800 baseline
+chunker: chunk_text, 800 chars, overlap 100 (no heading awareness)
+chunks: 31
+retrieval: all-MiniLM-L6-v2, cosine, ChromaDB; harness queries top-8 once
+eval set: eval_set.json, 35 questions (31 answerable, 4 unanswerable)
+top-4 hit rate: 77% (24/31), derived from the 7 MISS@4 lines
+notes: 5 of 7 top-4 misses are Discord_Bot.md questions
 
 Collection now has 31 chunks
 MISS@4  [discord-run]  What command starts the Discord bot?

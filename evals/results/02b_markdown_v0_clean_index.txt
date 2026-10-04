@@ -1,3 +1,10 @@
+run: 02b markdown v0, clean index
+chunker: same as 02
+chunks: 65
+eval set: eval_set.json, 35 questions
+top-4 hit rate: 71% (22/31), derived from the 9 MISS@4 lines
+notes: identical to 02 (same ranks), confirming 02 was not affected by stale chunks; ingest now deletes a file's chunks before upserting
+
 chunks: 65
 MISS@4  [defect-schedule]  ranks of expected chunk: [5]
 MISS@4  [defect-run-app]  ranks of expected chunk: [9]

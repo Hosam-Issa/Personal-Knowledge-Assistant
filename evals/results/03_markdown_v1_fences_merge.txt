@@ -1,3 +1,10 @@
+run: 03 markdown v1
+chunker: chunk_markdown v1, ignores '#' inside code fences, merges sections under 150 chars, max 800, overlap 100; no prefix
+chunks: 55
+eval set: eval_set.json, 35 questions
+top-4 hit rate: 71% (22/31), derived from the 9 MISS@4 lines
+notes: fence fix moved defect-run-app from rank 9 to 6; discord-run (19) and discord-storage (21) unchanged
+
 chunks: 55
 MISS@4  [defect-schedule]  ranks of expected chunk: [5]
 MISS@4  [defect-run-app]  ranks of expected chunk: [6]
