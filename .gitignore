@@ -11,4 +11,4 @@ wheels/
 
 .env
 chroma_db/
-docs/
+ProjectBrief.md
