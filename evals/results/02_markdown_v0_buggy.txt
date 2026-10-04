@@ -1,0 +1,24 @@
+chunks: 65
+MISS@4  [defect-schedule]  ranks of expected chunk: [5]
+MISS@4  [defect-run-app]  ranks of expected chunk: [9]
+Miss@8 [defect-run-app] What command runs the defect classifier web app?
+MISS@4  [discord-run]  ranks of expected chunk: [19]
+Miss@8 [discord-run] What command starts the Discord bot?
+MISS@4  [discord-storage]  ranks of expected chunk: [22]
+Miss@8 [discord-storage] What database does the bingo bot use?
+MISS@4  [discord-pillow]  ranks of expected chunk: [10]
+Miss@8 [discord-pillow] Which library renders the marked-up board images in the bingo bot?
+MISS@4  [pi-interval]  ranks of expected chunk: [7]
+MISS@4  [pi-hardware]  ranks of expected chunk: [5]
+MISS@4  [defect-reeval-paraphrase]  ranks of expected chunk: [5]
+MISS@4  [multi-systemd]  ranks of expected chunk: [5, 1]
+
+Retrieval hit rate over 31 answerable questions:
+  top-1: 35%
+  top-3: 68%
+  top-5: 84%
+  top-8: 87%
+  unanswerable [ide-unanswerable] top sim 0.370
+  unanswerable [gpu-unanswerable] top sim 0.505
+  unanswerable [license-unanswerable] top sim 0.295
+  unanswerable [players-unanswerable] top sim 0.501

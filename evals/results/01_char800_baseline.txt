@@ -1,0 +1,20 @@
+char chunker, size=800, overlap=100, 31 chunks
+
+Collection now has 31 chunks
+MISS@4  [discord-run]  What command starts the Discord bot?
+MISS@4  [discord-storage]  What database does the bingo bot use?
+MISS@4  [discord-pillow]  Which library renders the marked-up board images in the bingo bot?
+MISS@4  [discord-env]  Which environment variable holds the leaderboard channel in the bingo bot's .env?
+MISS@4  [pi-interval]  How often does the Pi monitor collect metrics?
+MISS@4  [discord-launch-paraphrase]  Once everything is installed, how do I get the bingo bot up and running?
+MISS@4  [defect-reeval-paraphrase]  How can I check the model's performance again without training from scratch?
+
+Retrieval hit rate over 31 answerable questions:
+  top-1: 42%
+  top-3: 65%
+  top-5: 81%
+  top-8: 94%
+
+Top similarity, answerable:   min 0.282
+Top similarity, unanswerable: max 0.457
+A good min_sim threshold sits between these two numbers.
