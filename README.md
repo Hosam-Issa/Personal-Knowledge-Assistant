@@ -24,7 +24,7 @@ Requires [uv](https://docs.astral.sh/uv/) and an Anthropic API key.
 
 ```bash
 git clone https://github.com/Hosam-Issa/Personal-Knowledge-Assistant
-cd personal-knowledge-assistant
+cd Personal-Knowledge-Assistant
 uv sync
 cp .env.example .env        # Windows: copy .env.example .env
 # edit .env and set ANTHROPIC_API_KEY
