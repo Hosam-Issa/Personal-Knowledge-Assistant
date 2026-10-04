@@ -5,7 +5,7 @@ from pathlib import Path
 
 from personal_knowledge_assistant.rag import ingest, retrieve, collection
 
-KS = (1, 3, 5, 8)
+KS = (1, 3, 4, 5, 8)
 lines = []
 
 def log(msg: str = "") -> None:
@@ -54,6 +54,7 @@ def main() -> None:
     for k in KS:
         log(f"  top-{k}: {hits_at[k] / len(answerable):.0%}")
 
+    log(f"\nanswerable min top sim {min(top_sims_answerable):.3f}")
     for q in unanswerable:
         sim = retrieve(q["question"], k=1)[0]["sim"]
         log(f"  unanswerable [{q['id']}] top sim {sim:.3f}")

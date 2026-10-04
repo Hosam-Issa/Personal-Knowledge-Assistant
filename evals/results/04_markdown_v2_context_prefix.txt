@@ -1,0 +1,31 @@
+run: 04 markdown v2
+chunker: chunk_markdown v1 + '[Title / Heading]' prefix on every chunk (embedded and shown to the model)
+chunks: 55
+eval set: eval_set.json, 35 questions
+top-4 hit rate: 77% (24/31)
+notes: harness now also prints top-4 and the min top similarity of answerable questions (output only, scoring unchanged)
+
+chunks: 55
+MISS@4  [defect-run-app]  ranks of expected chunk: [8]
+MISS@4  [discord-run]  ranks of expected chunk: [13]
+Miss@8 [discord-run] What command starts the Discord bot?
+MISS@4  [discord-storage]  ranks of expected chunk: [15]
+Miss@8 [discord-storage] What database does the bingo bot use?
+MISS@4  [discord-pillow]  ranks of expected chunk: [9]
+Miss@8 [discord-pillow] Which library renders the marked-up board images in the bingo bot?
+MISS@4  [pi-interval]  ranks of expected chunk: [7]
+MISS@4  [defect-reeval-paraphrase]  ranks of expected chunk: [5]
+MISS@4  [multi-systemd]  ranks of expected chunk: [5, 1]
+
+Retrieval hit rate over 31 answerable questions:
+  top-1: 48%
+  top-3: 74%
+  top-4: 77%
+  top-5: 84%
+  top-8: 90%
+
+answerable min top sim 0.315
+  unanswerable [ide-unanswerable] top sim 0.341
+  unanswerable [gpu-unanswerable] top sim 0.514
+  unanswerable [license-unanswerable] top sim 0.319
+  unanswerable [players-unanswerable] top sim 0.518

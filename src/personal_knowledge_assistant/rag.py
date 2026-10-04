@@ -53,7 +53,7 @@ def chunk_markdown(text: str, doc_name: str, max_size: int = 800, min_size: int 
     for heading, body in merged:
         label = title if heading == title else f"{title} / {heading}"
         for piece in (chunk_text(body, max_size, 100) if len(body) > max_size else [body]):
-            chunks.append(piece)
+            chunks.append(f"[{label}]\n{piece}")
     return chunks
 
 def ingest(folder: str = "docs") -> None:
@@ -90,10 +90,11 @@ Cite the source file for each claim, like [notes.md].
 If the context doesn't contain the answer, say you couldn't find it in the documents. Do not guess."""
 
 
-def answer(question: str, k: int = 4, min_sim: float = 0.2) -> str:
+def answer(question: str, k: int = 4, min_sim: float = 0.2, verbose: bool = True) -> str:
     hits = retrieve(question, k)
-    for h in hits:  # keep this while developing
-        print(f"  {h['sim']:.3f}  {h['source']} #{h['chunk']}")
+    if verbose:
+        for h in hits:
+            print(f"  {h['sim']:.3f}  {h['source']} #{h['chunk']}")
     if not hits or hits[0]["sim"] < min_sim:
         return "I couldn't find anything relevant in your documents."
     context = "\n\n".join(f"[{h['source']} #{h['chunk']}]\n{h['text']}" for h in hits)
