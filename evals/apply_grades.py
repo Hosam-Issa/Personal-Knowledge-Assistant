@@ -17,21 +17,22 @@ from pathlib import Path
 # Failed in every run: the right chunk was not retrieved, so the model
 # (correctly) declined. These are retrieval failures, not model failures.
 COMMON_FAILS = {
-    "defect-run-app": "retrieval miss: 'python app.py' chunk ranked 8th; model declined",
     "discord-run": "retrieval miss: run-command chunk ranked 13th; model declined",
     "discord-pillow": "retrieval miss: Pillow chunk ranked 9th; model declined",
+}
+
+_MISS_K4 = {
+    "defect-run-app": "retrieval miss: 'python app.py' chunk ranked 8th; model declined",
     "pi-interval": "retrieval miss: '10 seconds' chunk ranked 7th; model declined",
 }
 
+_SYSTEMD_K4 = "incomplete: named only the Pi monitor; Discord deployment chunk (rank 5) was outside top-4"
 # Failures that only happen in specific runs.
 RUN_FAILS = {
-    "05_answers_v2_k4": {
-        "multi-systemd": "incomplete: named only the Pi monitor; Discord deployment chunk (rank 5) was outside top-4",
-    },
-    "05_answers_v2_k4_rerun": {
-        "multi-systemd": "incomplete: named only the Pi monitor; Discord deployment chunk (rank 5) was outside top-4",
-    },
-    "05_answers_v2_k6": {},
+    "05_answers_v2_k4": {**_MISS_K4, "multi-systemd": _SYSTEMD_K4},
+    "05_answers_v2_k4_rerun": {**_MISS_K4, "multi-systemd": _SYSTEMD_K4},
+    "05_answers_v2_k6": _MISS_K4,
+    "05_answers_v2_k8": {},
 }
 
 # Passes that deserve a note.

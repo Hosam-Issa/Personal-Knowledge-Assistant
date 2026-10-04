@@ -90,7 +90,7 @@ Cite the source file for each claim, like [notes.md].
 If the context doesn't contain the answer, say you couldn't find it in the documents. Do not guess."""
 
 
-def answer(question: str, k: int = 4, min_sim: float = 0.2, verbose: bool = True) -> str:
+def answer(question: str, k: int = 8, min_sim: float = 0.2, verbose: bool = True) -> str:
     hits = retrieve(question, k)
     if verbose:
         for h in hits:
