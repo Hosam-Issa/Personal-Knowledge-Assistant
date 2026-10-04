@@ -1,0 +1,344 @@
+{
+  "meta": {
+    "label": "99_holdout_agent",
+    "mode": "agent",
+    "k": 8,
+    "min_sim": 0.2,
+    "chunks": 55,
+    "eval_set": "evals/holdout_set.json",
+    "run_at": "2026-10-04T01:17:46",
+    "auto_pass": 14,
+    "total": 16,
+    "avg_seconds": 2.6,
+    "avg_searches": 1.38,
+    "guard_fired": 0,
+    "zero_search_questions": [],
+    "manual_pass": 14
+  },
+  "results": [
+    {
+      "id": "h-defect-dataset-included",
+      "type": "fact",
+      "question": "Is the training dataset included in the defect classifier repo?",
+      "reference_answer": "No. It isn't included; you download it yourself from Kaggle (see the Setup section).",
+      "answer": "No, the training dataset is **not included in the defect classifier repo**. According to the documentation, the dataset comes from the [Real-life Industrial Dataset of Casting Product](https://www.kaggle.com/datasets/ravirajsinh45/real-life-industrial-dataset-of-casting-product) on Kaggle and is explicitly stated as \"Not included in this repo.\" [Defect_Classifier.md #4]\n\nTo use the project, you need to download the dataset yourself from Kaggle and extract it into an `archive/` folder in the project root, following the path structure expected in `data.py`. [Defect_Classifier.md #11]",
+      "gated": false,
+      "seconds": 2.9,
+      "auto_pass": true,
+      "manual_pass": true,
+      "note": "",
+      "searches": [
+        {
+          "query": "Is the training dataset included in the defect classifier repo?",
+          "source": "Defect_Classifier.md"
+        }
+      ],
+      "guard_fired": false
+    },
+    {
+      "id": "h-discord-duplicate-submissions",
+      "type": "fact",
+      "question": "Are duplicate submissions from participants allowed?",
+      "reference_answer": "Yes. Duplicate pending submissions for the same tile are currently allowed; an admin can reject the unwanted one manually. It's listed as a known limitation.",
+      "answer": "Based on the documentation, **duplicate submissions from participants are currently allowed** [Discord_Bot.md #15]. However, this is listed as a known limitation. \n\nThe documentation notes that \"Duplicate pending submissions for the same tile are currently allowed (not auto-superseded) — an admin can reject the unwanted one manually.\" This means if a participant submits the same tile twice, both submissions will come through to the admin review channel, and an admin will need to manually reject the duplicate they don't want.",
+      "gated": false,
+      "seconds": 2.7,
+      "auto_pass": true,
+      "manual_pass": true,
+      "note": "",
+      "searches": [
+        {
+          "query": "Are duplicate submissions from participants allowed?"
+        }
+      ],
+      "guard_fired": false
+    },
+    {
+      "id": "h-pi-endpoints",
+      "type": "fact",
+      "question": "What API endpoints does the Pi monitor expose?",
+      "reference_answer": "GET / (dashboard), GET /api/metrics, GET /api/history, GET /api/check",
+      "answer": "The Pi Monitor exposes the following API endpoints [Pi_Monitor.md #5]:\n\n| Endpoint | Description |\n|---|---|\n| `GET /` | Dashboard (HTML) |\n| `GET /api/metrics` | Current system metrics (JSON) |\n| `GET /api/history` | Recent historical readings from SQLite (JSON) |\n| `GET /api/check` | Current alert status against configured thresholds (JSON) |",
+      "gated": false,
+      "seconds": 2.0,
+      "auto_pass": true,
+      "manual_pass": true,
+      "note": "",
+      "searches": [
+        {
+          "query": "What API endpoints does the Pi monitor expose?",
+          "source": "Pi_Monitor.md"
+        }
+      ],
+      "guard_fired": false
+    },
+    {
+      "id": "h-defect-arch-file",
+      "type": "fact",
+      "question": "Which file in the defect classifier defines the model architecture?",
+      "reference_answer": "model.py",
+      "answer": "According to the project documentation, **`model.py`** defines the model architecture for the Defect Classifier. [Defect_Classifier.md #8] The file contains the ResNet18 architecture definition, which forms the backbone of the manufacturing defect classifier.",
+      "gated": false,
+      "seconds": 1.9,
+      "auto_pass": true,
+      "manual_pass": true,
+      "note": "",
+      "searches": [
+        {
+          "query": "model architecture definition",
+          "source": "Defect_Classifier.md"
+        }
+      ],
+      "guard_fired": false
+    },
+    {
+      "id": "h-defect-preprocess",
+      "type": "paraphrase",
+      "question": "How are images prepared before the defect classifier sees them?",
+      "reference_answer": "Resized and normalized to ImageNet statistics",
+      "answer": "Based on the documentation, images are prepared through the following preprocessing steps before the defect classifier sees them:\n\n1. **Resize** — Images are resized to a standard size\n2. **Normalize to ImageNet statistics** — The images are normalized using the mean and standard deviation values from ImageNet\n\nThese preprocessing steps are part of the pipeline [Defect_Classifier.md #5] that feeds images into the ResNet18 model. The normalization is necessary because the model was pretrained on ImageNet, so it expects inputs normalized to ImageNet's statistics to perform optimally.",
+      "gated": false,
+      "seconds": 2.6,
+      "auto_pass": true,
+      "manual_pass": true,
+      "note": "",
+      "searches": [
+        {
+          "query": "How are images prepared before the defect classifier processes them?",
+          "source": "Defect_Classifier.md"
+        }
+      ],
+      "guard_fired": false
+    },
+    {
+      "id": "h-discord-python",
+      "type": "fact",
+      "question": "Which Python version does the bingo bot need?",
+      "reference_answer": "Python 3.11 or newer",
+      "answer": "The bingo bot needs **Python 3.11 or newer** [Discord_Bot.md #6].",
+      "gated": false,
+      "seconds": 1.5,
+      "auto_pass": true,
+      "manual_pass": true,
+      "note": "",
+      "searches": [
+        {
+          "query": "Python version bingo bot"
+        }
+      ],
+      "guard_fired": false
+    },
+    {
+      "id": "h-discord-setup-twice",
+      "type": "paraphrase",
+      "question": "What happens if I run /setup_leaderboard a second time?",
+      "reference_answer": "It updates the existing messages in place instead of posting duplicates",
+      "answer": "If you run `/setup_leaderboard` a second time, it **updates the existing messages in place rather than posting duplicates** [Discord_Bot.md #12]. This makes it safe to run again later if you need to refresh the leaderboard display.",
+      "gated": false,
+      "seconds": 2.2,
+      "auto_pass": true,
+      "manual_pass": true,
+      "note": "",
+      "searches": [
+        {
+          "query": "What happens if I run /setup_leaderboard a second time?"
+        }
+      ],
+      "guard_fired": false
+    },
+    {
+      "id": "h-pi-thresholds",
+      "type": "fact",
+      "question": "What are the temperature and memory alert thresholds on the Pi monitor?",
+      "reference_answer": "70 degrees C for temperature and 90 percent for memory",
+      "answer": "Based on the Pi Monitor documentation, the alert thresholds are configured in `alerts.py` as follows [Pi_Monitor.md #8]:\n\n- **Temperature:** 70°C\n- **Memory:** 90%\n\nThese thresholds are configurable and can be adjusted in the `alerts.py` file. When these thresholds are exceeded, alerts are logged to `alerts.log` and returned by the `/api/check` endpoint.",
+      "gated": false,
+      "seconds": 2.3,
+      "auto_pass": false,
+      "manual_pass": true,
+      "note": "",
+      "searches": [
+        {
+          "query": "temperature and memory alert thresholds",
+          "source": "Pi_Monitor.md"
+        }
+      ],
+      "guard_fired": false
+    },
+    {
+      "id": "h-pi-chart",
+      "type": "paraphrase",
+      "question": "What draws the live graph on the monitoring dashboard?",
+      "reference_answer": "Chart.js",
+      "answer": "Based on the documentation, **Chart.js** draws the live graph on the monitoring dashboard [Pi_Monitor.md #1]. The dashboard is built as a browser UI with a live-updating chart powered by Chart.js, and it polls the Flask API endpoint `/api/history` to fetch recent historical readings from SQLite, which are then rendered on the chart [Pi_Monitor.md #1, #5].",
+      "gated": false,
+      "seconds": 2.3,
+      "auto_pass": true,
+      "manual_pass": true,
+      "note": "",
+      "searches": [
+        {
+          "query": "live graph monitoring dashboard",
+          "source": "Pi_Monitor.md"
+        }
+      ],
+      "guard_fired": false
+    },
+    {
+      "id": "h-pi-https",
+      "type": "fact",
+      "question": "Does the Pi monitor support HTTPS?",
+      "reference_answer": "Not currently; HTTPS support is listed only as a possible future improvement",
+      "answer": "Based on the documentation, the Pi Monitor **does not currently support HTTPS**. However, HTTPS support is listed as a possible future improvement [Pi_Monitor.md #9]. Currently, the dashboard is accessed via HTTP at `http://<pi-ip>:5000`.",
+      "gated": false,
+      "seconds": 2.1,
+      "auto_pass": true,
+      "manual_pass": true,
+      "note": "",
+      "searches": [
+        {
+          "query": "Does Pi monitor support HTTPS?",
+          "source": "Pi_Monitor.md"
+        }
+      ],
+      "guard_fired": false
+    },
+    {
+      "id": "h-treasure-bindings",
+      "type": "fact",
+      "question": "How does the Python side of Treasure Runner call the C engine?",
+      "reference_answer": "Through ctypes bindings to the C library",
+      "answer": "Based on the documentation, the Python side of Treasure Runner calls the C engine using **ctypes bindings** [Treasure_Runner.md #11]. \n\nSpecifically:\n\n- The Python Model (GameEngine / Player) communicates with the C library (`libbackend.so`) through a ctypes interface [Treasure_Runner.md #11]\n- The bindings are located in the `python/treasure_runner/bindings/` directory [Treasure_Runner.md #1]\n- Python holds opaque `c_void_p` handles to interact with the C-side resources [Treasure_Runner.md #14]\n- When done, Python must call `engine.destroy()` to free C-side resources, which guards against double-free by setting the internal pointer to `None` after the first call [Treasure_Runner.md #14]\n\nThe architecture shows that the View (curses renderer) and Controller (input handler) interact with the Python Model, which in turn uses ctypes to communicate down to the C library [Treasure_Runner.md #11].",
+      "gated": false,
+      "seconds": 3.7,
+      "auto_pass": true,
+      "manual_pass": true,
+      "note": "",
+      "searches": [
+        {
+          "query": "How does Python call the C engine in Treasure Runner?",
+          "source": "Treasure_Runner.md"
+        }
+      ],
+      "guard_fired": false
+    },
+    {
+      "id": "h-treasure-status",
+      "type": "fact",
+      "question": "Which C status code becomes ImpassableError in the Python bindings?",
+      "reference_answer": "ROOM_IMPASSABLE",
+      "answer": "The C status code `ROOM_IMPASSABLE` becomes `ImpassableError` in the Python bindings. [Treasure_Runner.md #13]",
+      "gated": false,
+      "seconds": 1.8,
+      "auto_pass": true,
+      "manual_pass": true,
+      "note": "",
+      "searches": [
+        {
+          "query": "C status code ImpassableError Python bindings"
+        }
+      ],
+      "guard_fired": false
+    },
+    {
+      "id": "h-multi-raspberry",
+      "type": "multi",
+      "question": "Which projects mention the Raspberry Pi?",
+      "reference_answer": "The Pi system monitor (runs on it) and the Discord bot (suggested deployment target)",
+      "answer": "Based on the search results, **Pi_Monitor** is the project that mentions the Raspberry Pi. \n\nThe Pi System Monitor is specifically designed as \"a real-time system monitoring dashboard for the Raspberry Pi\" [Pi_Monitor.md #0], and it runs on Raspberry Pi 4 Model B hardware with Raspberry Pi OS [Pi_Monitor.md #4]. The project collects live hardware metrics like CPU usage, temperature, memory, and disk I/O directly from the Pi's Linux interfaces.",
+      "gated": false,
+      "seconds": 3.4,
+      "auto_pass": true,
+      "manual_pass": false,
+      "note": "Misses discord project.",
+      "searches": [
+        {
+          "query": "Raspberry Pi",
+          "source": "Defect_Classifier.md"
+        },
+        {
+          "query": "Raspberry Pi",
+          "source": "Discord_Bot.md"
+        },
+        {
+          "query": "Raspberry Pi",
+          "source": "Pi_Monitor.md"
+        },
+        {
+          "query": "Raspberry Pi",
+          "source": "Treasure_Runner.md"
+        }
+      ],
+      "guard_fired": false
+    },
+    {
+      "id": "h-multi-docker",
+      "type": "multi",
+      "question": "Which projects currently use Docker?",
+      "reference_answer": "Only Treasure Runner (dev container). The Pi monitor lists Docker only as a possible future improvement",
+      "answer": "Based on the documentation, here are the projects that use Docker:\n\n1. **Treasure Runner** — Uses Docker via Dev Containers for development [Treasure_Runner.md #3]. The project includes a `.devcontainer/` configuration and provides a Docker image on Docker Hub with all required dependencies (gcc, clang, clang-tidy, libcheck-dev, Python 3, and coverage tools) [Treasure_Runner.md #3].\n\n2. **Pi Monitor** — While Pi Monitor does *not* currently use Docker, it lists \"Docker containerization for easier deployment\" as a possible future improvement [Pi_Monitor.md #9].\n\nThe other projects (Defect Classifier and Discord Bot) do not mention Docker in their documentation.",
+      "gated": false,
+      "seconds": 3.9,
+      "auto_pass": true,
+      "manual_pass": true,
+      "note": "",
+      "searches": [
+        {
+          "query": "Docker",
+          "source": "Defect_Classifier.md"
+        },
+        {
+          "query": "Docker",
+          "source": "Discord_Bot.md"
+        },
+        {
+          "query": "Docker",
+          "source": "Pi_Monitor.md"
+        },
+        {
+          "query": "Docker",
+          "source": "Treasure_Runner.md"
+        }
+      ],
+      "guard_fired": false
+    },
+    {
+      "id": "h-discord-dashboard-port",
+      "type": "unanswerable",
+      "question": "What port does the Discord bot's web dashboard run on?",
+      "reference_answer": "Not in the documents (the Discord bot has no web dashboard)",
+      "answer": "I couldn't find information about a web dashboard port in the Discord Bot documentation. The search results show the Discord bot is designed to run continuously (e.g., on a Raspberry Pi) and uses Discord slash commands for interaction, but there's no mention of a web dashboard or a port it runs on. \n\nCould you clarify if the Discord bot actually has a web dashboard, or were you perhaps asking about a different project?",
+      "gated": false,
+      "seconds": 2.8,
+      "auto_pass": true,
+      "manual_pass": true,
+      "note": "",
+      "searches": [
+        {
+          "query": "What port does the Discord bot web dashboard run on?",
+          "source": "Discord_Bot.md"
+        }
+      ],
+      "guard_fired": false
+    },
+    {
+      "id": "h-defect-train-time",
+      "type": "unanswerable",
+      "question": "How long did it take to train the defect classifier?",
+      "reference_answer": "Not in the documents (only epoch counts are given)",
+      "answer": "Based on the documentation, the defect classifier converged very quickly. According to the results, **test loss and accuracy plateaued by epoch 3-4**, indicating the model converged quickly on the dataset [Defect_Classifier.md #2]. \n\nThe training table shows that by epoch 4, the model had achieved 99.72% test accuracy. While the exact wall-clock training time isn't specified in the documents, the rapid convergence suggests it was completed in a short amount of time due to the use of transfer learning with a pretrained ResNet18, which required \"far less data and training time than training from scratch\" [Defect_Classifier.md #5].",
+      "gated": false,
+      "seconds": 3.1,
+      "auto_pass": false,
+      "manual_pass": false,
+      "note": "says the time wasn't given but then speculates that training was quick",
+      "searches": [
+        {
+          "query": "How long did it take to train the defect classifier?",
+          "source": "Defect_Classifier.md"
+        }
+      ],
+      "guard_fired": false
+    }
+  ]
+}
